@@ -1,11 +1,20 @@
+import repository.impl.ExtractFileRepository
 import repository.impl.TransactionFileRepository
 import service.impl.AccountService
+import service.impl.ExtractService
 import service.impl.TransactionService
+import utils.ExtractPrinter
 import utils.TransactionPrinter
 import utils.Utils
+import java.util.*
 
 fun main() {
     println("Challenge Blu by Bs2")
+
+//    val scanner = Scanner(System.`in`)
+//    println("Insira o caminho do arquivo de transações")
+//    val pathFile: String = scanner.nextLine()
+
     val pathFile = Utils.loadResource("transactions.csv")
 
     val filePersistence = TransactionFileRepository(pathFile)
@@ -25,4 +34,14 @@ fun main() {
 
     // Executar as operações de deposito
     val extract = transactionService.processTransaction(transactionsList)
+
+    // Ler aquivo de extrato e visualizar
+    val extractPrinter: ExtractPrinter
+
+    val extractPathFile = Utils.loadResource("extract.csv")
+    val extractRepository = ExtractFileRepository(extractPathFile)
+    val extractService = ExtractService(extractRepository)
+    val extractList = extractService.findAll()
+    extractPrinter = ExtractPrinter(extractList)
+    extractPrinter.print()
 }

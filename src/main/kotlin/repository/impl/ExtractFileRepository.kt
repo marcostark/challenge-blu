@@ -1,19 +1,17 @@
 package repository.impl
 
-import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import domain.Account
 import domain.Extract
-import domain.Transaction
-import repository.ITransactionRepository
+import repository.IExtractRepository
 import utils.Utils
 import utils.Utils.Companion.extractDigit
 import java.lang.Exception
 
-class TransactionFileRepository(
+class ExtractFileRepository(
     private val pathFile: String
-): ITransactionRepository {
-    override fun findAll(): List<Transaction> {
-        val transactionList = mutableListOf<Transaction>()
+): IExtractRepository {
+    override fun findAll(): List<Extract> {
+        val transactionList = mutableListOf<Extract>()
 
         try {
             val accounts = Utils.loadFile(pathFile)
@@ -25,8 +23,8 @@ class TransactionFileRepository(
 
                         val resul = Utils.extractContendFile(row)
                         val(number, digit) = resul[0].extractDigit()
-                        val account = Account(number, digit)
-                        val transaction = Transaction(account, resul[1].toDouble())
+                        val account = Account(number, digit, resul[1].toDouble(), resul[2].toDouble())
+                        val transaction = Extract(account)
                         transactionList.add(transaction)
                     }
                 }
@@ -35,13 +33,5 @@ class TransactionFileRepository(
             println("Error: $ex")
         }
         return transactionList
-    }
-
-    override fun save(rows: List<List<String>>, targetFileName:String, append: Boolean) {
-        csvWriter().writeAll(rows, targetFileName, append = append)
-    }
-
-    override fun extract(): List<Extract> {
-        TODO("Not yet implemented")
     }
 }

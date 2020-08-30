@@ -22,7 +22,6 @@ class UtilsTest {
     @Test
     fun testLoadFileNotEmpty() {
         val pathFile = Utils.loadResource("transactions.csv")
-        println(pathFile)
         val fileLoaded = Utils.loadFile(pathFile)
         assertFalse(fileLoaded.isEmpty())
     }
@@ -32,5 +31,19 @@ class UtilsTest {
         val digit = accountNumber[1].toInt()
         val number = accountNumber[0]
         return Result(number, digit)
+    }
+
+    @Test
+    fun testExtractContendFileDelimiterNotComma() {
+        val row: List<String> = listOf("1234;4697")
+        val result = Utils.extractContendFile(row)
+        assertEquals(2, result.size)
+    }
+
+    @Test
+    fun testExtractContendFileDelimiterComma() {
+        val rows: List<String> = listOf("1234","4697")
+        val result = Utils.extractContendFile(rows)
+        assertEquals(2, result.size)
     }
 }

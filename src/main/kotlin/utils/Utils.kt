@@ -8,6 +8,11 @@ class Utils {
 
     companion object {
 
+        /**
+         * @description: Extrai o digito da conta
+         * que vem acoplado ao número da conta         *
+         * @param accountNumber Número da conta anexado ao digito
+         */
         fun String.extractDigit(): Result {
             val accountNumber = split("-")
             val number = accountNumber[0]
@@ -15,6 +20,12 @@ class Utils {
             return Result(number, digit)
         }
 
+        /**
+         * @description Carrega e extratir conteudo de um
+         * arquivo         *
+         * @param Caminho do arquivo
+         * @return Lista de string com o conteúdo do arquivo
+         */
         fun loadFile(path: String):List<List<String>> {
             var contend: List<List<String>> = mutableListOf()
             try {
@@ -26,6 +37,12 @@ class Utils {
             return contend
         }
 
+        /**
+         * @description Carrega um arquivo a a partir
+         * da pasta resources do projeto
+         * @param Nome do arquivo a ser carregado
+         * @return Caminho do arquivo no sistema
+         */
         fun loadFilesResource(fileName: String): String {
             val resource = this::class.java.classLoader.getResource(fileName)
             return resource!!.file
@@ -43,4 +60,8 @@ class Utils {
     }
 }
 
+/**
+ * Classe utilitaria utilizada para
+ * retornar uma tupla de valores
+ */
 data class Result(val number: String, val digit: Int)

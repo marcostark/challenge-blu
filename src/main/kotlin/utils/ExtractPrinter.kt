@@ -5,6 +5,10 @@ import domain.Extract
 class ExtractPrinter(
     private val accounts: List<Extract>
 ) {
+    /**
+     * @description Imprime no console informações
+     * de uma lista de contas
+     * */
     fun print() {
         println("------------------------------- EXTRATO ------------------------------")
         if(accounts.isNotEmpty()) {

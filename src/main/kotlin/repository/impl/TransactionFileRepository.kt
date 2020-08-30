@@ -1,5 +1,6 @@
 package repository.impl
 
+import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import domain.Account
 import domain.Transaction
 import repository.ITransactionRepository
@@ -34,7 +35,7 @@ class TransactionFileRepository(
         return transactionList
     }
 
-    override fun save(transactions: List<List<String>>, append: Boolean) {
-        TODO("Not yet implemented")
+    override fun save(rows: List<List<String>>, targetFileName:String, append: Boolean) {
+        csvWriter().writeAll(rows, targetFileName, append = append)
     }
 }

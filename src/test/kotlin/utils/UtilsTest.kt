@@ -21,7 +21,7 @@ class UtilsTest {
 
     @Test
     fun testLoadFileNotEmpty() {
-        val pathFile = Utils.loadResource("transactions.csv")
+        val pathFile = Utils.loadFilesResource("transactions.csv")
         val fileLoaded = Utils.loadFile(pathFile)
         assertFalse(fileLoaded.isEmpty())
     }

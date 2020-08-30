@@ -1,11 +1,6 @@
 package utils
 
-import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
-import domain.Account
-import domain.Transaction
-import utils.Utils.Companion.extractDigit
 import java.io.File
 import java.lang.Exception
 
@@ -31,7 +26,7 @@ class Utils {
             return contend
         }
 
-        fun loadResource(fileName: String): String {
+        fun loadFilesResource(fileName: String): String {
             val resource = this::class.java.classLoader.getResource(fileName)
             return resource!!.file
         }

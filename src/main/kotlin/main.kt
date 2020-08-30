@@ -11,11 +11,12 @@ import java.util.*
 fun main() {
     println("Challenge Blu by Bs2")
 
-//    val scanner = Scanner(System.`in`)
-//    println("Insira o caminho do arquivo de transações")
-//    val pathFile: String = scanner.nextLine()
+    val scanner = Scanner(System.`in`)
+    println("Insira o caminho do arquivo de transações")
+    val pathFile: String = scanner.nextLine()
 
-    val pathFile = Utils.loadResource("transactions.csv")
+    //Caso queira carregar o arquivo diretamente da pasta resources
+    //val pathFile = Utils.loadResource("transactions.csv")
 
     val filePersistence = TransactionFileRepository(pathFile)
 
@@ -38,7 +39,7 @@ fun main() {
     // Ler aquivo de extrato e visualizar
     val extractPrinter: ExtractPrinter
 
-    val extractPathFile = Utils.loadResource("extract.csv")
+    val extractPathFile = Utils.loadFilesResource("extract.csv")
     val extractRepository = ExtractFileRepository(extractPathFile)
     val extractService = ExtractService(extractRepository)
     val extractList = extractService.findAll()

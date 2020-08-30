@@ -26,7 +26,7 @@ class TransactionService(
             val account = transaction.account
             if (digit != null) {
                 val bonus = calculateBonus(account)
-                val acc = accountService.updateBalance(transaction, bonus)
+                val acc = accountService.deposit(transaction, bonus)
                 acc.bonus = bonus
                 accountList.add(acc)
             }
@@ -42,11 +42,11 @@ class TransactionService(
             }
 
         val headerExtract = listOf(listOf("Conta", "Depósitos", "Total de Bônus"))
-        filePersitence.save(headerExtract, Constants.EXTRACT_FILENAME)
+        filePersitence.save(headerExtract, "${Constants.PATH_RESOURCES}/${Constants.EXTRACT_FILENAME}")
 
         extractList.forEach { acc ->
             val rows = listOf(listOf(acc.getNumberAndDigit(), acc.balance.toString(), acc.bonus.toString()))
-            filePersitence.save(rows, Constants.EXTRACT_FILENAME, true)
+            filePersitence.save(rows, "${Constants.PATH_RESOURCES}/${Constants.EXTRACT_FILENAME}", true)
         }
         return extract
     }

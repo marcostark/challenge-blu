@@ -22,4 +22,7 @@ fun main() {
     val transactionsList = transactionService.findAll()
     transactionPrinter = TransactionPrinter(transactionsList)
     transactionPrinter.print()
+
+    // Executar as operações de deposito
+    val extract = transactionService.processTransaction(transactionsList)
 }

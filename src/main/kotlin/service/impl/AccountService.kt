@@ -6,7 +6,7 @@ import service.IAccountService
 
 class AccountService: IAccountService {
 
-    override fun updateBalance(transaction: Transaction, bonus: Double): Account {
+    override fun deposit(transaction: Transaction, bonus: Double): Account {
         val account = transaction.account
         account.balance = transaction.value.toDouble()
         return account

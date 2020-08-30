@@ -4,5 +4,5 @@ import domain.Account
 import domain.Transaction
 
 interface IAccountService {
-    fun updateBalance(transaction: Transaction, bonus: Double): Account
+    fun deposit(transaction: Transaction, bonus: Double): Account
 }

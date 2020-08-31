@@ -33,7 +33,7 @@ class TransactionService(
         }
 
         val extractList = (accountList)
-            .groupBy { it.number }
+            .groupBy { it.getNumberAndDigit() }
             .values
             .map {
                 it.reduce {

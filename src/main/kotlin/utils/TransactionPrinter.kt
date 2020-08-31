@@ -5,6 +5,10 @@ import domain.Transaction
 class TransactionPrinter(
     private val transactions: List<Transaction>
 ) {
+    /**
+     * @description Imprime no console informações
+     * de uma lista de transações
+     * */
     fun print() {
         println("---------------------------- TRANSAÇÕES -------------------------------")
         if(transactions.isNotEmpty()) {

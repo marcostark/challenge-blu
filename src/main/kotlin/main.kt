@@ -1,11 +1,9 @@
-import repository.impl.ExtractFileRepository
 import repository.impl.TransactionFileRepository
 import service.impl.AccountService
-import service.impl.ExtractService
 import service.impl.TransactionService
+import utils.Constants
 import utils.ExtractPrinter
 import utils.TransactionPrinter
-import utils.Utils
 import java.util.*
 
 fun main() {
@@ -36,13 +34,12 @@ fun main() {
     // Executar as operações de deposito
     val extract = transactionService.processTransaction(transactionsList)
 
-    // Ler aquivo de extrato e visualizar
-    val extractPrinter: ExtractPrinter
+    if(extract.isNotEmpty()) {
+        println("----------------------------------------------------------------------")
+        println("Arquivo de extrato salvo em: ${Constants.PATH_RESOURCES}/${Constants.EXTRACT_FILENAME}")
+    }
 
-    val extractPathFile = Utils.loadFilesResource("extract.csv")
-    val extractRepository = ExtractFileRepository(extractPathFile)
-    val extractService = ExtractService(extractRepository)
-    val extractList = extractService.findAll()
-    extractPrinter = ExtractPrinter(extractList)
+    val extractPrinter: ExtractPrinter
+    extractPrinter = ExtractPrinter(extract)
     extractPrinter.print()
 }

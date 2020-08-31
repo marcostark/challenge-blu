@@ -45,6 +45,7 @@ class TransactionService(
         filePersitence.save(headerExtract, "${Constants.PATH_RESOURCES}/${Constants.EXTRACT_FILENAME}")
 
         extractList.forEach { acc ->
+            extract.add(Extract(acc))
             val rows = listOf(listOf(acc.getNumberAndDigit(), acc.balance.toString(), acc.bonus.toString()))
             filePersitence.save(rows, "${Constants.PATH_RESOURCES}/${Constants.EXTRACT_FILENAME}", true)
         }
